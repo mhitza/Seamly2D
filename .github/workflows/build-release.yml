@@ -146,7 +146,7 @@ jobs:
           Get-ChildItem -Recurse -Include *.exe,*.dll | % { Copy-Item $_.FullName -force -destination ..\windows-build }
           windeployqt.exe --libdir ..\windows-build --plugindir ..\windows-build --release ..\windows-build\seamly2d.exe
           windeployqt.exe --force --libdir ..\windows-build --plugindir ..\windows-build --release ..\windows-build\seamlyme.exe
-          Compress-Archive -Path .\windows-build -DestinationPath windows-build.zip
+          Compress-Archive -Path ..\windows-build -DestinationPath windows-build.zip
 
       - name: upload windows.zip
         uses: actions/upload-release-asset@v1
