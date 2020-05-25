@@ -144,7 +144,7 @@ jobs:
           New-Item -Path . -Name "windows-build" -ItemType "directory"
           Copy-Item -Path . -Recurse -Include "*.exe","*.dll" -Destination windows-build
           ls windows-build\
-          Compress-Archive -Path windows-build -Destination windows-build.zip
+          Compress-Archive -Path windows-build -DestinationPath windows-build.zip
           ls
 
       - name: upload windows.zip
