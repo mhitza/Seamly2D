@@ -20,7 +20,7 @@ jobs:
         run: |
           sudo apt update
           sudo apt install g++ make ccache qttools5-dev-tools libqt5xmlpatterns5-dev libqt5svg5-dev
-          sudo apt install fuse2
+          sudo apt install fuse
 
       - name: build
         run: |
