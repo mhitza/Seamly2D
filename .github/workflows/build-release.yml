@@ -20,6 +20,7 @@ jobs:
         run: |
           sudo apt update
           sudo apt install g++ make ccache qttools5-dev-tools libqt5xmlpatterns5-dev libqt5svg5-dev
+          sudo apt install fuse2
 
       - name: build
         run: |
@@ -142,7 +143,9 @@ jobs:
           nmake
           New-Item -Path . -Name "windows-build" -ItemType "directory"
           Copy-Item -Path . -Recurse -Include "*.exe","*.dll" -Destination windows-build
+          ls windows-build\
           Compress-Archive -Path windows-build -Destination windows-build.zip
+          ls
 
       - name: upload windows.zip
         uses: actions/upload-release-asset@v1
