@@ -143,10 +143,9 @@ jobs:
           qmake.exe Seamly2D.pro
           nmake
           mkdir windows-build
-          Get-ChildItem -Recurse -Include *.exe,*.dll | % { Copy-Item $_.FullName -destination windows-build\ }
-          ls windows-build\
+          Get-ChildItem -Recurse -Include *.exe,*.dll | % { Copy-Item $_.FullName -force -destination windows-build\ }
+          ls windows-build
           Compress-Archive -Path windows-build -DestinationPath windows-build.zip
-          ls
 
       - name: upload windows.zip
         uses: actions/upload-release-asset@v1
