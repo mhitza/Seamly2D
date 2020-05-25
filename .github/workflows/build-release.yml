@@ -50,6 +50,7 @@ jobs:
           cp share/img/Seamly2D_logo_254x254.png /home/runner/local/share/icons/hicolor/256x256/seamly2d.png
 
           docker run --cap-add SYS_ADMIN --device /dev/fuse \
+            --security-opt apparmor:unconfined --security-opt seccomp=unconfined \
             -v /home/runner/local:/app/usr \
             --rm mhitza/linuxdeployqt:9.5.9
 
@@ -59,6 +60,7 @@ jobs:
           cp dist/seamlyme.desktop /home/runner/local/share/applications
 
           docker run --cap-add SYS_ADMIN --device /dev/fuse \
+            --security-opt apparmor:unconfined --security-opt seccomp=unconfined \
             -v /home/runner/local:/app/usr \
             --rm mhitza/linuxdeployqt:9.5.9
 
