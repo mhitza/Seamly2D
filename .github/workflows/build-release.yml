@@ -51,7 +51,7 @@ jobs:
 
           docker run --cap-add SYS_ADMIN --device /dev/fuse \
             -v /home/runner/local:/app/usr \
-            --rm -ti mhitza/linuxdeployqt:9.5.9
+            --rm mhitza/linuxdeployqt:9.5.9
 
           mv /home/runner/local/Seamly2D*.AppImage Seamly2D.AppImage
 
@@ -60,7 +60,7 @@ jobs:
 
           docker run --cap-add SYS_ADMIN --device /dev/fuse \
             -v /home/runner/local:/app/usr \
-            --rm -ti mhitza/linuxdeployqt:9.5.9
+            --rm mhitza/linuxdeployqt:9.5.9
 
           mv /home/runner/local/SeamlyMe*.AppImage SeamlyMe.AppImage
 
@@ -72,6 +72,7 @@ jobs:
           upload_url: ${{ env.UPLOAD_URL }}
           asset_path: ./Seamly2D.AppImage
           asset_name: Seamly2D.AppImage
+          asset_content_type: application/octet-stream
 
       - name: upload SeamlyMe.AppImage
         uses: actions/upload-release-asset@v1
@@ -81,6 +82,7 @@ jobs:
           upload_url: ${{ env.UPLOAD_URL }}
           asset_path: ./SeamlyMe.AppImage
           asset_name: SeamlyMe.AppImage
+          asset_content_type: application/octet-stream
 
   macos:
     runs-on: macos-latest
@@ -148,4 +150,4 @@ jobs:
           upload_url: ${{ env.UPLOAD_URL }}
           asset_path: ./windows-build.zip
           asset_name: windows.zip
-
+          asset_content_type: application/zip
