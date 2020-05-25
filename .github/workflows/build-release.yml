@@ -20,6 +20,7 @@ jobs:
         run: |
           sudo apt update
           sudo apt install g++ make ccache qttools5-dev-tools libqt5xmlpatterns5-dev libqt5svg5-dev
+          sudo apt install fuse2
 
       - name: build
         run: |
@@ -50,6 +51,7 @@ jobs:
           cp share/img/Seamly2D_logo_254x254.png /home/runner/local/share/icons/hicolor/256x256/seamly2d.png
 
           docker run --cap-add SYS_ADMIN --device /dev/fuse \
+            --security-opt apparmor:unconfined --security-opt seccomp=unconfined \
             -v /home/runner/local:/app/usr \
             --rm mhitza/linuxdeployqt:9.5.9
 
@@ -59,6 +61,7 @@ jobs:
           cp dist/seamlyme.desktop /home/runner/local/share/applications
 
           docker run --cap-add SYS_ADMIN --device /dev/fuse \
+            --security-opt apparmor:unconfined --security-opt seccomp=unconfined \
             -v /home/runner/local:/app/usr \
             --rm mhitza/linuxdeployqt:9.5.9
 
@@ -140,7 +143,9 @@ jobs:
           nmake
           New-Item -Path . -Name "windows-build" -ItemType "directory"
           Copy-Item -Path . -Recurse -Include "*.exe","*.dll" -Destination windows-build
+          ls windows-build\
           Compress-Archive -Path windows-build -Destination windows-build.zip
+          ls
 
       - name: upload windows.zip
         uses: actions/upload-release-asset@v1
