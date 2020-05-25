@@ -141,8 +141,8 @@ jobs:
         run: |
           qmake.exe Seamly2D.pro
           nmake
-          New-Item -Path . -Name "windows-build" -ItemType "directory"
-          Copy-Item -Path . -Recurse -Include "*.exe","*.dll" -Destination windows-build
+          mkdir windows-build
+          Get-ChildItem -Recurse -Include *.exe,*.dll | % { Copy-Item $_.FullName -destination windows-build\ }
           ls windows-build\
           Compress-Archive -Path windows-build -DestinationPath windows-build.zip
           ls
