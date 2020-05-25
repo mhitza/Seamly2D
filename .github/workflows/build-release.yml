@@ -56,6 +56,7 @@ jobs:
             --rm mhitza/linuxdeployqt:9.5.9
 
           mv /home/runner/local/Seamly2D*.AppImage Seamly2D.AppImage
+          cp share/img/Seamly2D_logo_254x254.png /home/runner/local/share/icons/hicolor/256x256/seamlyme.png
 
           rm /home/runner/local/share/applications/seamly2d.desktop
           cp dist/seamlyme.desktop /home/runner/local/share/applications
@@ -141,8 +142,8 @@ jobs:
         run: |
           qmake.exe Seamly2D.pro
           nmake
-          New-Item -Path . -Name "windows-build" -ItemType "directory"
-          Copy-Item -Path . -Recurse -Include "*.exe","*.dll" -Destination windows-build
+          mkdir windows-build
+          Get-ChildItem -Recurse -Include *.exe,*.dll | % { Copy-Item $_.FullName -destination windows-build\ }
           ls windows-build\
           Compress-Archive -Path windows-build -DestinationPath windows-build.zip
           ls
