@@ -144,9 +144,11 @@ jobs:
           nmake
           mkdir ..\windows-build
           Get-ChildItem -Recurse -Include *.exe,*.dll | % { Copy-Item $_.FullName -force -destination ..\windows-build }
-          windeployqt.exe --libdir ..\windows-build\ --plugindir ..\windows-build\ ..\windows-build\seamly2d.exe
-          windeployqt.exe --force --libdir ..\windows-build\ --plugindir ..\windows-build\ ..\windows-build\seamlyme.exe
-          Compress-Archive -Path ..\windows-build -DestinationPath windows-build.zip
+          cd ..\windows-build
+          windeployqt.exe . --release ..\windows-build\seamly2d.exe
+          windeployqt.exe --force --release ..\windows-build\seamlyme.exe
+          cd ..
+          Compress-Archive -Path .\windows-build -DestinationPath windows-build.zip
 
       - name: upload windows.zip
         uses: actions/upload-release-asset@v1
