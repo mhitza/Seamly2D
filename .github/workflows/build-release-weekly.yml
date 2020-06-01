@@ -2,7 +2,7 @@ name: Build release assets
 
 on:
   schedule:
-    - cron: '0 0 * * MON'
+    - cron: '0 */24 * * *'
 
 jobs:
   create-release:
