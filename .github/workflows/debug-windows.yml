@@ -13,19 +13,22 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v2
-      #- name: Add msbuild to PATH
-      #  uses: microsoft/setup-msbuild@v1.0.0
+      - uses: ilammy/msvc-dev-cmd@v1
+        with:
+          toolset: '14.26.28801'
       - uses: jurplel/install-qt-action@v2
         with:
           version: ${{ env.QT_VERSION }}
       - name: build
         env:
           MSVC: C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.26.28801\bin\Hostx86\x86\
+
+        #ls "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.26.28801"
+        #$Env:Include += "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.26.28801\Include";
+        # $Env:Path += ";$Env:MSVC"
+        #& $Env:Qt5_Dir\bin\qmake.exe Seamly2D.pro -r CONFIG+=no_ccache CONFIG+=noDebugSymbols
         run: |
-          ls "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.26.28801"
-          $Env:Include += "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.26.28801\Include";
-          $Env:Path += ";$Env:MSVC"
-          & $Env:Qt5_Dir\bin\qmake.exe Seamly2D.pro -r CONFIG+=no_ccache CONFIG+=noDebugSymbols
+          qmake.exe Seamly2D.pro -r CONFIG+=no_ccache CONFIG+=noDebugSymbols
           nmake.exe
       - name: create & code sign installer
         run: |
