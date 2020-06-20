@@ -3,7 +3,7 @@ name: Test windows
 on:
   push:
     branches:
-      - master
+      - develop
 env:
   QT_SELECT: 5
   QT_VERSION: '5.13.2' # quotes required or YAML parser will interpret as float
