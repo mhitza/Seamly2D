@@ -22,8 +22,10 @@ jobs:
         env:
           MSVC: C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Tools\MSVC\14.26.28801\bin\Hostx86\x86\
         run: |
+          echo ";$Env:MSVC"
+          $Env:Path += ";$Env:MSVC"
           & $Env:Qt5_Dir\bin\qmake.exe Seamly2D.pro -r CONFIG+=no_ccache CONFIG+=noDebugSymbols
-          & $Env:MSVC\nmake.exe
+          nmake.exe
       - name: create & code sign installer
         run: |
           mkdir ..\windows-build
