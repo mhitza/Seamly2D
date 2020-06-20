@@ -21,7 +21,7 @@ jobs:
       - name: build
         # see https://docs.microsoft.com/en-us/cpp/build/building-on-the-command-line?view=vs-2019
         run: |
-          & "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" -vcvars_ver="14.11" 
+          & "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" -vcvars_ver="14.16" 
           nmake.exe
           #& $Env:Qt5_Dir\bin\qmake.exe Seamly2D.pro -r CONFIG+=no_ccache CONFIG+=noDebugSymbols
           #     - name: create & code sign installer
