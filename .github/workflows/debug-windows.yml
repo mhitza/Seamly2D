@@ -20,8 +20,9 @@ jobs:
       #    version: ${{ env.QT_VERSION }}
       - name: build
         run: |
-          ls "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
-          #$Env:Qt5_Dir\bin\qmake.exe Seamly2D.pro -r CONFIG+=no_ccache CONFIG+=noDebugSymbols
+          & "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
+          nmake
+          #& $Env:Qt5_Dir\bin\qmake.exe Seamly2D.pro -r CONFIG+=no_ccache CONFIG+=noDebugSymbols
           #     - name: create & code sign installer
           #       run: |
           #         mkdir ..\windows-build
