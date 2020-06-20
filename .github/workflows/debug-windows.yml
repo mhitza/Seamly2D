@@ -20,8 +20,7 @@ jobs:
           version: ${{ env.QT_VERSION }}
       - name: build
         run: |
-          ls $Env:Qt5_Dir\bin
-          #qmake.exe Seamly2D.pro -r CONFIG+=no_ccache CONFIG+=noDebugSymbols
+          $Env:Qt5_Dir\bin\qmake.exe Seamly2D.pro -r CONFIG+=no_ccache CONFIG+=noDebugSymbols
           #msbuild
           #     - name: create & code sign installer
           #       run: |
