@@ -13,15 +13,15 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Add msbuild to PATH
-        uses: microsoft/setup-msbuild@v1.0.0
-      - uses: jurplel/install-qt-action@v2
-        with:
-          version: ${{ env.QT_VERSION }}
+      #- name: Add msbuild to PATH
+      #  uses: microsoft/setup-msbuild@v1.0.0
+      #- uses: jurplel/install-qt-action@v2
+      #  with:
+      #    version: ${{ env.QT_VERSION }}
       - name: build
         run: |
-          $Env:Qt5_Dir\bin\qmake.exe Seamly2D.pro -r CONFIG+=no_ccache CONFIG+=noDebugSymbols
-          #msbuild
+          ls "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
+          #$Env:Qt5_Dir\bin\qmake.exe Seamly2D.pro -r CONFIG+=no_ccache CONFIG+=noDebugSymbols
           #     - name: create & code sign installer
           #       run: |
           #         mkdir ..\windows-build
